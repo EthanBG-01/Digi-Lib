@@ -5,6 +5,7 @@
 
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
+const auth = require("../middleware/auth");
 const jwt = require("jsonwebtoken");
 
 //Middleware (authentification)
@@ -95,6 +96,15 @@ router.post("/login", async (req, res) => {
     console.log("There has been an error: " + err);
     res.status(500).json({ error: err.nessage });
   }
+});
+
+//Get user data: (Must be logged in (check with auth)):
+router.get("/", auth, async (req, res) => {
+  const user = await User.findById(req.user);
+  res.json({
+    name: user.name,
+    id: user._id,
+  });
 });
 
 module.exports = router;
