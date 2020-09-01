@@ -1,2 +1,4 @@
 # Digi-Lib
->> A Digitial library of a user's book collection and insights.
+> A website which acts as a digital library; holding the user's books and insights.
+
+
