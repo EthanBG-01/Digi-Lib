@@ -17,7 +17,7 @@ router.get("/test", (req, res) => {
   res.send("Test Successful");
 });
 
-//Asnyc as it contacts the database:
+//REGISTRATION ROUTE
 router.post("/register", async (req, res) => {
   try {
     const { name, email, password, confirmPassword } = req.body;
@@ -62,7 +62,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-//Login
+//LOGIN ROUTE
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
