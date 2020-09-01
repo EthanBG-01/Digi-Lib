@@ -1,3 +1,8 @@
+/*
+    User routes created with help from  
+    https://www.youtube.com/watch?v=4_ZiJGY5F38 (devistry - MERN Stack user authentification)
+*/
+
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -49,6 +54,42 @@ router.post("/register", async (req, res) => {
 
     //returns the saved user:
     res.json(saved);
+  } catch (err) {
+    //Useful for debugging.
+    console.log("There has been an error: " + err);
+    res.status(500).json({ error: err.nessage });
+  }
+});
+
+//Login
+router.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password)
+      res.status(400).json({ ErrorMsg: "Not all fields have been entered" });
+
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      res.status(400).json({ ErrorMsg: "No user with that email exists." });
+    }
+
+    //Matching the passwords
+    const isPassword = await bcrypt.compare(password, user.password);
+
+    if (!isPassword) {
+      res.status(400).json({ ErrorMsg: "Incorrect Log-In Credentials" });
+    }
+
+    //Json web token - used for authorization on the front end.
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    res.json({
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+      },
+    });
   } catch (err) {
     //Useful for debugging.
     console.log("There has been an error: " + err);
