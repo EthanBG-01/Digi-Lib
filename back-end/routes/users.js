@@ -58,7 +58,7 @@ router.post("/register", async (req, res) => {
   } catch (err) {
     //Useful for debugging.
     console.log("There has been an error: " + err);
-    res.status(500).json({ error: err.nessage });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -94,7 +94,7 @@ router.post("/login", async (req, res) => {
   } catch (err) {
     //Useful for debugging.
     console.log("There has been an error: " + err);
-    res.status(500).json({ error: err.nessage });
+    res.status(500).json({ error: err.message });
   }
 });
 

@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI';
+}
+
+body > #root > div {
+    height: 100vh;
+}
+
+#header {
+    background-color: #222f45;
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+a{
+    text-decoration:none;
+}
+ 
+#header .title{
+    margin:0;
+    padding:0 1rem;
+    color:white;
+    font-size:1.5rem;
+    font-weight:500;
+}
+
+#headerTitleImage {
+    display:flex;
+    align-items:center;
+}
+
+#headerTitleImage img {
+    height:40px;
+    width:auto;
+    padding-left:1rem;
+}
+#header{
+    height:50px;
+}
+
+#header .auth-level{
+    display:flex;
+    height:100%;
+}
+
+    #header .auth-level button {
+        color: white;
+        background-color: #222f45;
+        font-size:1rem;
+        border:none;
+        cursor:pointer;
+        padding:0 1rem;
+    }
+
+        #header .auth-level button:focus {
+            outline:none;
+        }
+
+        #header .auth-level button:hover {
+            background-color: #11768A;
+        }
+
+#container{
+    display:flex;
+    flex-flow:column;
+}
+.logRegPage{
+    display:flex;
+    flex:1;
+}
+
+#landingPage {
+    flex: 2;
+    background-image: url("./assets/images/background.png");
+    background-position: center;
+    background-size: cover;
+    color: white;
+}
+
+#logoTitle{
+    display:flex;
+    align-items:center;
+}
+
+#logoTitle h1 {
+    font-size:3.5rem;
+}
+
+#landingPage h2{
+    font-weight:normal;
+    font-size:1.8rem;
+    margin-bottom:3rem;
+}
+
+#landingPage p{
+    font-size:1.2rem;
+}
+
+#logoTitle img {
+    height:3.7rem;
+    margin-right:0.5rem;
+    width:3.7rem;
+}
+
+#landingContainer{
+    padding:15%;
+}
+
+.logRegPanel {
+    flex: 1;
+    background-color:#F3f3f3;
+}
+
+.logRegPanel input{
+    border-radius:8px;
+    border:1px solid #d8d8d8;
+}
+
+.logRegPanel input[type="submit"]{
+    background-color:#11768A;
+    color:white;
+    margin-top:10vh;
+    cursor:pointer;
+}
+
+.logRegPanel .form {
+    padding:0rem 5rem;
+    
+}
+
+.logRegPanel .form #register-password{
+    margin-bottom:1rem;
+}
+
+    
+    .logRegPanel .form label,
+    .logRegPanel .form input {
+        display:block;
+        width:100%;
+    }
+
+
+    .logRegPanel .form label{
+        color:#4f4f4f;
+        font-size:0.8rem;
+        padding-top:1rem;
+        margin-bottom:0.2rem;
+    }
+
+
+    .logRegPanel .form input {
+        padding:0.2rem;
+        height:2rem;
+    }
+
+        
+    .logRegPanel h3{
+        text-align:center;
+        font-weight:normal;
+        margin-top:20%;
+        color:#7a7a7a;
+    }
+
+
+    .error-notice{
+        background-color:#f19999;
+        margin:0rem 5rem;
+        margin-top:1rem;
+        display:flex;
+        justify-content:space-between;
+        padding:5px;
+        border-radius:8px;
+        color:#691f1f;
+        font-size:0.8rem;
+        padding-left:1rem;
+        align-items:center;
+    }
+
+        .error-notice button {
+            border-radius: 50%;
+            width: 1rem;
+            height: 1rem;
+            font-size: 0.5rem;
+            border: none;
+            color: white;
+            cursor: pointer;
+            background-color: #691f1f;
+        }
