@@ -58,7 +58,16 @@ a{
         cursor:pointer;
         padding:0 1rem;
     }
+    #header .auth-level #welcome {
+        display:flex;
+        align-items:center;
+    }
 
+    #header .auth-level h1{
+        color:white;
+        font-weight:normal;
+        font-size:0.9rem;
+    }
         #header .auth-level button:focus {
             outline:none;
         }

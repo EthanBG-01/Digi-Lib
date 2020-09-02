@@ -25,8 +25,10 @@ export default function AuthOptions() {
         
         <nav className="auth-level">
             {
-                userData.user ?
-                    <button onClick={logout}>Log Out</button> :
+                userData.user ? 
+                    <div id="welcome">
+                        <h1>Welcome, {userData.user.name.split(' ')[0]}</h1>
+                        <button onClick={logout}>Log Out</button> </div> : 
                     <>
                         <button onClick={register}>Register</button>
                         <button onClick={login}>Login</button></>

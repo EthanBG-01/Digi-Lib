@@ -107,4 +107,18 @@ router.get("/", auth, async (req, res) => {
   });
 });
 
+//Get user book list:
+router.get("/userBooks", auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user);
+        const list = user.books;
+        res.json({
+            books: list,
+        });
+    } catch (err) {
+        json.res(500).json({ error: err.message });
+    }
+    
+});
+
 module.exports = router;
