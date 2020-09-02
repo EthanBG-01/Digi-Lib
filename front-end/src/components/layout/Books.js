@@ -1,15 +1,37 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import UserContext from "../../context/userContext";
+import Axios from "axios";
 
 export default function Books() {
     const { userData, setUserData } = useContext(UserContext);
+    const [Books, setBooks]= useState("{}");
+
+    const getBooks = async () => {
+        try {
+            const books = await Axios.get("http://localhost:5000/users/userBooks", { headers: { "x-auth-token": userData.token } });
+            setBooks(books.data.books);
+        } catch (err) {
+            console.log(err);
+        }
+};
 
     useEffect(() => {
-        //New route to check if the user has any books!
-    });
+
+        getBooks();
+    }, []);
 
     return (
-        <div id="bookShelt"></div>
+        <div id="bookShelf">
+            {
+                (!{Books}.length>0) ?
+                    <div id="emptyShelf">
+                        <h2>It's rather empty on your bookshelf... Search a book to get started!</h2>
+                    </div> :
+                    <p>Book</p>
+            }
+
+
+        </div>
     )
 
 }
