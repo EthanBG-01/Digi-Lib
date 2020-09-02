@@ -16,6 +16,8 @@ body > #root > div {
     justify-content: space-between;
     align-items: center;
     padding-left: 2%;
+    z-index: 3;
+    box-shadow: 0px 19px 5px 0px rgba(0,0,0,0.75);
     padding-right: 2%;
 }
 
@@ -202,3 +204,48 @@ a{
             cursor: pointer;
             background-color: #691f1f;
         }
+
+#bookShelf{
+    padding: 2rem 2rem;
+}
+
+#bookShelf h2, hr{
+    margin-bottom:1rem;
+}
+
+
+
+
+#emptyShelf{
+    text-align:center;
+    width:100%;
+}
+
+#emptyShelf h2{
+    margin-bottom:1rem;
+}
+
+#emptyShelf img{
+    width:15rem;
+    height:auto;
+}
+
+
+#BannerImage {
+    z-index:1;
+    background-image: url("./assets/images/Banner.png");
+    background-position: center;
+    color:white;
+    padding-left:2rem;
+    padding-top:3rem;
+    padding-bottom:3rem;
+}
+
+#BannerImage h1{
+    font-size:4rem;
+}
+
+#bookshelfTitle {
+    display:flex;
+    justify-content:space-between;
+}

@@ -22,10 +22,23 @@ export default function Books() {
 
     return (
         <div id="bookShelf">
+            <div id="bookshelfTitle">
+                <h2>Your Bookshelf</h2>
+                <select name="genres" id="genres">
+                    <option value="sci-fi">Science Fiction</option>
+                    <option value="philosophy">Philosophy</option>
+                </select>
+            </div>
+            
+            <hr />
+
             {
                 (!{Books}.length>0) ?
                     <div id="emptyShelf">
-                        <h2>It's rather empty on your bookshelf... Search a book to get started!</h2>
+                        <img src={require('../../assets/images/empty.jpg')} />
+                        <h2>Hi {userData.user.name.split(' ')[0]}!</h2>
+                        <p>You don't have anything in your Library yet,<br />
+                           Search for a book to get started!</p>
                     </div> :
                     <p>Book</p>
             }
