@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import Axios from "axios";
 
 export default function Banner() {
     const [search, setSearch] = useState();
@@ -7,8 +8,12 @@ export default function Banner() {
         e.preventDefault();
         try {
             const searchTerm = { title: search };
+            
+            const searchResult = await Axios.get("http://localhost:5000/books/search", {
+                searchTerm,
+            });
 
-
+            console.log(searchResult);
 
         } catch (err) {
             console.log(err);
