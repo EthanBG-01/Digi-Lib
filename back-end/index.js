@@ -31,3 +31,4 @@ mongoose.connect(
 
 //Routes in use:
 app.use("/users", require("./routes/users"));
+app.use("/books", require("./routes/books"));
