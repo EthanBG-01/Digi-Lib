@@ -30,7 +30,11 @@ export default function App() {
                 <Header changeSearch={changeSearchTerm}/>
                 <div id="container">
                      <Switch>
-                        <Route exact path="/" component={Home}/>
+                        <Route exact path="/"
+                            render={(props) => (
+                                <Home {...props} q={searchTerm} />
+                            )}
+                        />
                         <Route path="/login" component={Login} />
                         <Route path="/register" component={Register} />
                     </Switch>
