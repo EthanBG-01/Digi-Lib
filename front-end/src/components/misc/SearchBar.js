@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import Axios from "axios";
 
-export default function Banner() {
+export default function SearchBar() {
     const [search, setSearch] = useState();
+    const [result, setResult] = useState();
 
     const submit = async (e) => {
         e.preventDefault();
@@ -14,6 +15,7 @@ export default function Banner() {
             });
 
             console.log(searchResult);
+            setResult(searchResult.data.items);
 
         } catch (err) {
             console.log(err);

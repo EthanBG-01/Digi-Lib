@@ -10,18 +10,27 @@ import Header from "./components/layout/Header";
 
 export default function App() {
 
+    //Need to pass search term in header to HOME:
+    const [searchTerm, setSearchTerm] = useState();
+
+    const changeSearchTerm = (term) => {
+        setSearchTerm(term);
+        console.log("Search term from app" + term);
+    }
+
     const [userData, setUserData] = useState({
         token: undefined,
         user: undefined,
     });
 
+    
     return <>
         <BrowserRouter>
             <UserContext.Provider value={{ userData, setUserData }} >
-                <Header />
+                <Header changeSearch={changeSearchTerm}/>
                 <div id="container">
                      <Switch>
-                        <Route exact path="/" component={Home} />
+                        <Route exact path="/" component={Home}/>
                         <Route path="/login" component={Login} />
                         <Route path="/register" component={Register} />
                     </Switch>

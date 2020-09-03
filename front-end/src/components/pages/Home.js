@@ -6,16 +6,19 @@ import Banner from "../layout/Banner";
 
 export default function Home() {
     const { userData, setUserData } = useContext(UserContext);
-    
+
+
+
     return (
         <div className="page">
-            <Banner />
+            
             {
                 userData.user ?
-                    <Books /> :
+                    <>
+                    <Banner />
+                    <Books /> </>:
                     <p>Not Logged In.</p>
             }
-
            
         </div>
     )

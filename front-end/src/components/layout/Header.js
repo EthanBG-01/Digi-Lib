@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthOptions from "../auth/AuthLayer";
 import UserContext from "../../context/userContext";
-import SearchBar from "../misc/SearchBar";
 
 
-export default function Header() {
+export default function Header(props) {
 
+    const [query, setQuery] = useState();
     const { userData, setUserData } = useContext(UserContext);
 
     return (
@@ -20,7 +20,11 @@ export default function Header() {
             {
                 userData.user ?
                     //user is logged in, show search:
-                   <SearchBar />
+                    //<SearchBar />
+                    <div id="search">
+                            <input type="text" placeholder="Search for Books..." onChange={e => setQuery(e.target.value)} />
+                        <button type="submit" onClick={() => props.changeSearch(query)}>Search</button>
+                    </div>
                     
                     :<></>
             }
@@ -30,3 +34,4 @@ export default function Header() {
         </header>
     );
 }
+
