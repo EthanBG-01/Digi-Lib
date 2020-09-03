@@ -37,16 +37,31 @@ export default function SearchBooks(props) {
         <div id="searchBooks">
             {
                 (BookResults) ? 
-                    <>
+                    <div className="shelf">
                         {BookResults.map((item, i) =>
-                            <article>
-                                <h2>{item.volumeInfo.title}</h2>
-                                <p>{item.volumeInfo.authors[0]}</p>
-                                <img src={item.volumeInfo.imageLinks.thumbnail} />
-                            </article>
+                            <div className="BookEntry">
+                               
+                                {
+                                    (item.volumeInfo.imageLinks) ?
+                                        <img src={item.volumeInfo.imageLinks.thumbnail} /> : <img src={"../../assets/empty.jpg"} />
+                                }
+                                                     
+                                <div className="bookDetails">
+                                    {(item.volumeInfo.title) ? <h2>{item.volumeInfo.title}</h2> : <h2>Untitled</h2>}
+                                    {(item.volumeInfo.authors) ? <h3>{item.volumeInfo.authors[0]}</h3> : <h3>No Author Found</h3>}
+                                    {(item.volumeInfo.categories) ? <h4 className="Genre">{item.volumeInfo.categories[0]}</h4> : <h4 className="Genre">No Genres Found</h4>}
+
+                                    <button>Add to Library</button>
+                                </div>
+
+                                  
+
+
+
+                            </div>
 
                         )}  
-                    </>
+                    </div>
                     :
 
                     <p>Search</p>
