@@ -3,3 +3,5 @@
 
 
 <img src="./README-Assets/RegisterScreenshot.JPG" width="500">
+<img src="./README-Assets/HomeEmpty.JPG" width="500">
+<img src="./README-Assets/SearchResults.JPG" width="500">
