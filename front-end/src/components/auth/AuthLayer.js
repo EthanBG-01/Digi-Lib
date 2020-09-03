@@ -28,7 +28,7 @@ export default function AuthOptions() {
                 userData.user ? 
                     <div id="welcome">
                         <h1>Welcome, {userData.user.name.split(' ')[0]}</h1>
-                        <button onClick={logout}>Log Out</button> </div> : 
+                        <button onClick={logout}>V</button> </div> : 
                     <>
                         <button onClick={register}>Register</button>
                         <button onClick={login}>Login</button></>

@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import Books from "../layout/Books";
 import SearchBooks from "../layout/SearchBooks";
 import Banner from "../layout/Banner";
+import SearchBanner from "../layout/SearchBanner";
 
 export default function Home(props) {
     const { userData, setUserData } = useContext(UserContext);
@@ -14,7 +15,9 @@ export default function Home(props) {
             {   //Check if user is logged in.
                 userData.user ?
                     props.q ? 
-                        <SearchBooks query={props.q} /> :
+                        <>
+                            <SearchBanner />
+                        <SearchBooks query={props.q} /> </>:
                         <>
                             <Banner />
                             <Books />

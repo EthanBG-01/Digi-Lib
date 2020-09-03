@@ -249,3 +249,21 @@ a{
     display:flex;
     justify-content:space-between;
 }
+
+#search input {
+    margin-left:1rem;
+    padding:0.5rem;
+    border-radius:8px;
+    border:none;
+    width:20vw;
+    margin-right:0.4rem;
+}
+
+#search button {
+    cursor:pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    background-color: #11768A;
+}

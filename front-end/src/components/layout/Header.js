@@ -15,20 +15,20 @@ export default function Header(props) {
                 <div id="headerTitleImage">
                     <img src={require('../../assets/images/Logo.png')} />
                     <Link to="/"><h1 className="title">Digi-Lib</h1></Link>
-            </div>
+               
 
             {
                 userData.user ?
                     //user is logged in, show search:
                     //<SearchBar />
                     <div id="search">
-                            <input type="text" placeholder="Search for Books..." onChange={e => setQuery(e.target.value)} />
+                        <input type="text" placeholder="Search for Books..." onChange={e => setQuery(e.target.value)} />
                         <button type="submit" onClick={() => props.changeSearch(query)}>Search</button>
                     </div>
                     
                     :<></>
             }
-
+            </div>
                 <AuthOptions />
             
         </header>
