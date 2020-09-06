@@ -1,8 +1,7 @@
 const router = require("express").Router();
-const bcrypt = require("bcryptjs");
 const auth = require("../middleware/auth");
-const jwt = require("jsonwebtoken");
 const request = require('request');
+const User = require("../mongoModels/userModel");
 
 require("dotenv").config();
 
@@ -19,10 +18,22 @@ router.post("/search", async (req, res) => {
         console.log(err);
         res.status(500).json({ msg: err.message });
     }
+
+});
+
+router.post("/addToLibrary", auth, async (req, res) => {
+    //add the book ID to the array 'books':
+    try {
+        const {userID, bookID } = req.body;
+        if (!userID || !bookID) res.status(400).json({ errMsg: "No ID provided, Cannot add book." });
+        
+        const update = await User.findByIdAndUpdate({ _id: userID }, { $push: { books: bookID } });
+        res.json(update);
     
-
-
-
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ msg: err.message });
+    }
 });
 
 

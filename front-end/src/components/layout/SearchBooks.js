@@ -16,13 +16,15 @@ export default function SearchBooks(props) {
             const result = await Axios.post("http://localhost:5000/books/search", data);
 
             setBookResults(result.data);
-
         } catch (err) {
             console.log(err);
         }
     };
 
-
+    const addToLibrary = async (bookID) => {
+        
+        console.log(BookResults[bookID].id);
+    }
     
     useEffect(() => {
 
@@ -39,7 +41,7 @@ export default function SearchBooks(props) {
                 (BookResults) ? 
                     <div className="shelf">
                         {BookResults.map((item, i) =>
-                            <div className="BookEntry">
+                            <div className="BookEntry" key={item.id}>
                                
                                 {
                                     (item.volumeInfo.imageLinks) ?
@@ -51,11 +53,10 @@ export default function SearchBooks(props) {
                                     {(item.volumeInfo.authors) ? <h3>{item.volumeInfo.authors[0]}</h3> : <h3>No Author Found</h3>}
                                     {(item.volumeInfo.categories) ? <h4 className="Genre">{item.volumeInfo.categories[0]}</h4> : <h4 className="Genre">No Genres Found</h4>}
 
-                                    <button>Add to Library</button>
+                                    <button onClick={() => addToLibrary(i)}>Add to library</button>
                                 </div>
 
                                   
-
 
 
                             </div>

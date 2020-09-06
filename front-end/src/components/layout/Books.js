@@ -4,26 +4,32 @@ import Axios from "axios";
 
 export default function Books() {
     const { userData, setUserData } = useContext(UserContext);
-    const [Books, setBooks]= useState("{}");
+    const [loading, setLoading] = useState(true);
+    const [books, setBooks] = useState(null);
 
-    const getBooks = async () => {
+    const fetchBooks = async () => {
         try {
             const books = await Axios.get("http://localhost:5000/users/userBooks", { headers: { "x-auth-token": userData.token } });
+            console.log("HERE");
             setBooks(books.data.books);
+            setLoading(false);
         } catch (err) {
+            console.log("ERROR");
             console.log(err);
+            setLoading(false);
         }
-};
+    }
 
     useEffect(() => {
+        setLoading(true);
+        fetchBooks();
+    }, [])
 
-        getBooks();
-    }, []);
 
     return (
         <div id="bookShelf">
 
-            
+
             <div id="bookshelfTitle">
                 <h2>Your Bookshelf</h2>
                 <select name="genres" id="genres">
@@ -31,22 +37,19 @@ export default function Books() {
                     <option value="philosophy">Philosophy</option>
                 </select>
             </div>
-            
             <hr />
 
-            {
-                (!{Books}.length>0) ?
+            {loading ? <p>Loading</p> :
+                books.length > 0 ? <p>Books</p> : 
+
                     <div id="emptyShelf">
                         <img src={require('../../assets/images/empty.jpg')} />
                         <h2>Hi {userData.user.name.split(' ')[0]}!</h2>
                         <p>You don't have anything in your Library yet,<br />
-                           Search for a book to get started!</p>
-                    </div> :
-                    <p>Book</p>
-            }
-
-
+                            Search for a book to get started!</p>
+                    </div> 
+            }  
+            
         </div>
     )
-
 }
