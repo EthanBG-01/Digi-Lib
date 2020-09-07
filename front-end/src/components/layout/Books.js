@@ -10,7 +10,6 @@ export default function Books() {
     const fetchBooks = async () => {
         try {
             const books = await Axios.get("http://localhost:5000/users/userBooks", { headers: { "x-auth-token": userData.token } });
-            console.log("HERE");
             setBooks(books.data.books);
             setLoading(false);
         } catch (err) {

@@ -6,6 +6,7 @@ import Axios from "axios";
 export default function SearchBooks(props) {
     const { userData, setUserData } = useContext(UserContext);
     const [title, setTitle] = useState();
+    const [disabled, setDisabled] = useState([]);
 
     //Books and Search Results:
     const [BookResults, setBookResults] = useState(null);
@@ -24,14 +25,19 @@ export default function SearchBooks(props) {
         }
     };
 
-    const addToLibrary = async (bookID) => {
+    const addToLibrary = async (num) => {
         try {
             const data = {
                 userID: userData.user.id,
-                bookID: BookResults[bookID].id
+                bookID: BookResults[num].id
             };
             const result = await Axios.post("http://localhost:5000/books/addToLibrary", data, { headers: { "x-auth-token": userData.token } } );
+            setDisabled([...disabled, num])
+            //Successful; we want to disable the button!
+            if (result.status == 200) {
+            }
             
+
         } catch (err) {
             console.log(err);
         }
@@ -53,20 +59,16 @@ export default function SearchBooks(props) {
 
                                 {
                                     (item.volumeInfo.imageLinks) ?
-                                        <img src={item.volumeInfo.imageLinks.thumbnail} /> : <img src={"../../assets/empty.jpg"} />
+                                        <img src={item.volumeInfo.imageLinks.thumbnail} /> : <img src={require('../../assets/images/EmptyCover.png')}/>
                                 }
 
                                 <div className="bookDetails">
                                     {(item.volumeInfo.title) ? <h2>{item.volumeInfo.title}</h2> : <h2>Untitled</h2>}
                                     {(item.volumeInfo.authors) ? <h3>{item.volumeInfo.authors[0]}</h3> : <h3>No Author Found</h3>}
                                     {(item.volumeInfo.categories) ? <h4 className="Genre">{item.volumeInfo.categories[0]}</h4> : <h4 className="Genre">No Genres Found</h4>}
-
-                                    <button onClick={() => addToLibrary(i)}>Add to library</button>
+                                    <button disabled={disabled.indexOf(i) !== -1} onClick={() => addToLibrary(i)}>Add to Library</button>
                                 </div>
-
-
-
-
+                                
                             </div>
 
                         )}
