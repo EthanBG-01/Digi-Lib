@@ -30,14 +30,16 @@ router.post("/addToLibrary", auth, async (req, res) => {
         //Search the book in google API:
         request("https://www.googleapis.com/books/v1/volumes/" + bookID + "?key=" + process.env.BOOK_KEY, { json: true }, async (err, response, body) => {
 
+            console.log(body);
+
             //Catch empty values:
-            if (body['volumeInfo.categories']) {
+            if (body.volumeInfo.categories) {
                 genre=body.volumeInfo.categories[0];
             }else {
                 genre = "undefined";
             }
-
-            if (body['volumeInfo.imageLinks.thumbnail']) {
+            
+            if (body.volumeInfo.imageLinks.thumbnail) {
                 thumbnail = body.volumeInfo.imageLinks.thumbnail;
             } else {
                 thumbnail = "../../assets/images/EmptyCover.png";
@@ -81,6 +83,36 @@ router.post("/addToLibrary", auth, async (req, res) => {
     
 });
 
+
+//Get user book list:
+router.get("/userBooks", auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user);
+        const list = user.books;
+
+        if (list.length == 0) return res.json({ books: [] });
+
+        var data = [];
+        var genres = [];
+        for (var id of list) {
+            var book = await Books.findById(id);
+            genres.push(book.genre);
+            data.push(book);
+        }
+
+        console.log(data);
+
+        res.json({
+            books: data,
+            genres
+        })
+        
+
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+
+});
 
 module.exports = router;
 

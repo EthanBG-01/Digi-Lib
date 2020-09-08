@@ -9,9 +9,10 @@ export default function Books() {
 
     const fetchBooks = async () => {
         try {
-            const books = await Axios.get("http://localhost:5000/users/userBooks", { headers: { "x-auth-token": userData.token } });
+            const books = await Axios.get("http://localhost:5000/books/userBooks", { headers: { "x-auth-token": userData.token } });
             setBooks(books.data.books);
             setLoading(false);
+            console.log(books);
         } catch (err) {
             console.log("ERROR");
             console.log(err);
@@ -38,8 +39,25 @@ export default function Books() {
             </div>
             <hr />
 
-            {loading ? <p>Loading</p> :
-                books.length > 0 ? <p>Books</p> : 
+            {loading ? <div className="loading"> <img src={require('../../assets/images/loading.gif')} /> <p>Loading Books ... </p> </div> :
+                books.length > 0 ? 
+                    
+                    <div id="bookList">
+                        {books.map((item, i) =>
+                            <img src={item.thumbnail} />
+                        )}
+                        {books.map((item, i) =>
+                            <img src={item.thumbnail} />
+                        )}
+                        {books.map((item, i) =>
+                            <img src={item.thumbnail} />
+                        )}
+                        {books.map((item, i) =>
+                            <img src={item.thumbnail} />
+                        )}
+                    </div>
+                    
+                    : 
 
                     <div id="emptyShelf">
                         <img src={require('../../assets/images/empty.jpg')} />
