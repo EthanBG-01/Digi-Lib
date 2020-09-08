@@ -205,7 +205,7 @@ a{
         }
 
 #bookShelf{
-    padding: 2rem 2rem;
+    padding:2rem 2rem;
 }
 
 #bookShelf h2, hr{
@@ -248,6 +248,21 @@ a{
     display:flex;
     justify-content:space-between;
 }
+
+#options{
+    display:flex;
+}
+
+#options p{
+    margin-top:1vh;
+    margin-right:1rem;
+ }
+
+#options select{
+    margin-right:1rem;
+}
+
+
 
 #search input {
     margin-left:1rem;
@@ -355,6 +370,8 @@ button:disabled {
 #bookList img{
     width:8rem;
     height:13rem;
+    margin:0.5rem;
+    display:block;
 }
 
 #bookList img:hover {
@@ -363,9 +380,24 @@ button:disabled {
 }
 
 #bookList {
-    margin-top:5vh;
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-gap: 10px;
-    grid-auto-rows: minmax(100px, auto);
+    display:flex;
+    flex-wrap:wrap;
 }
+
+#bookshelfTitle select {
+    background-color: #ececec;
+    height:5vh;
+    border: 1px solid #dadada;
+    border-radius:8px;
+    padding:0rem 1rem;
+    cursor:pointer;
+}
+
+    #bookshelfTitle select:focus {
+        border:none;
+    }
+
+
+    #bookshelfTitle select:current {
+        border: none;
+    }

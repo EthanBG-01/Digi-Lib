@@ -25,7 +25,7 @@ export default function Header(props) {
                         <input type="text" placeholder="Search for Books..." onChange={e => setQuery(e.target.value)} />
                         <button type="submit" onClick={() => props.changeSearch(query)}>Search</button>
                     </div>
-                    
+                        
                     :<></>
             }
             </div>

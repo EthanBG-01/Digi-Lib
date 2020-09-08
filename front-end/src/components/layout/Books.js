@@ -32,10 +32,19 @@ export default function Books() {
 
             <div id="bookshelfTitle">
                 <h2>Your Bookshelf</h2>
-                <select name="genres" id="genres">
-                    <option value="sci-fi">Science Fiction</option>
-                    <option value="philosophy">Philosophy</option>
-                </select>
+                <div id="options">
+                    <p>Genre: </p>
+                    <select name="genres" id="genres">
+                        <option value="sci-fi">Science Fiction</option>
+                        <option value="philosophy">Philosophy</option>
+                    </select>
+                    <p>Sort By: </p>
+                    <select name="sort" id="sortBy">
+                        <option value="recent">Recently Added</option>
+                        <option value="philosophy">Author</option>
+                    </select>
+                </div>
+                
             </div>
             <hr />
 
