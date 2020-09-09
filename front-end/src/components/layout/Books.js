@@ -9,12 +9,12 @@ export default function Books() {
 
     const [loading, setLoading] = useState(true);
     const [books, setBooks] = useState(null);
-    const [sort, setSort] = useState("Recent");
+    const [sort, setSort] = useState("Recently Added");
 
     const fetchBooks = async () => {
         try {
             const books = await Axios.get("http://localhost:5000/books/userBooks", { headers: { "x-auth-token": userData.token } });
-            setBooks(books.data.books);
+            setBooks(books.data.books.reverse());
 
 
             setLoading(false);
@@ -43,14 +43,14 @@ export default function Books() {
                 <h2>Your Bookshelf</h2>
                 <div id="options">
                     <p>Genre: </p>
-                    <select name="genres" id="genres">
+                    <select name="genres" id="genres" >
                         <option value="sci-fi">Science Fiction</option>
                         <option value="philosophy">Philosophy</option>
                     </select>
                     <p>Sort By: </p>
-                    <select name="sort" id="sortBy">
+                    <select name="sort" id="sortBy" onChange={handleSelect}>
                         <option value="recent">Recently Added</option>
-                        <option value="philosophy">Author</option>
+                        <option value="author">Author</option>
                     </select>
                 </div>
                 
@@ -61,10 +61,16 @@ export default function Books() {
                 books.length > 0 ? 
                     
                     <div id="bookList">
-                        {books.map((item, i) =>
-                            <img src={item.thumbnail} />
-                        )}
-                       
+                        {
+                            sort == "author" ?
+                                <p>Author</p>
+                                :
+                                
+                                    books.map((item, i) =>
+                                        <img src={item.thumbnail} />
+                                    )
+                                
+                        }
                     </div>
                     
                     : 
