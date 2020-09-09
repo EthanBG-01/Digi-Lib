@@ -1,23 +1,32 @@
 import React, { useContext, useEffect, useState } from "react";
 import UserContext from "../../context/userContext";
+import BookListContext from "../../context/bookListContext";
 import Axios from "axios";
 
 export default function Books() {
     const { userData, setUserData } = useContext(UserContext);
+    const { bookList, setBookList } = useContext(BookListContext);
+
     const [loading, setLoading] = useState(true);
     const [books, setBooks] = useState(null);
+    const [sort, setSort] = useState("Recent");
 
     const fetchBooks = async () => {
         try {
             const books = await Axios.get("http://localhost:5000/books/userBooks", { headers: { "x-auth-token": userData.token } });
             setBooks(books.data.books);
+
+
             setLoading(false);
-            console.log(books);
         } catch (err) {
             console.log("ERROR");
             console.log(err);
             setLoading(false);
         }
+    }
+
+    const handleSelect = (e) => {
+        setSort(e.target.value);
     }
 
     useEffect(() => {
@@ -55,15 +64,7 @@ export default function Books() {
                         {books.map((item, i) =>
                             <img src={item.thumbnail} />
                         )}
-                        {books.map((item, i) =>
-                            <img src={item.thumbnail} />
-                        )}
-                        {books.map((item, i) =>
-                            <img src={item.thumbnail} />
-                        )}
-                        {books.map((item, i) =>
-                            <img src={item.thumbnail} />
-                        )}
+                       
                     </div>
                     
                     : 

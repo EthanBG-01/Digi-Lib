@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import UserContext from "../../context/userContext";
 import Axios from "axios";
-import SearchBanner from "./SearchBanner";
+import SearchBanner from "../layout/SearchBanner";
 
 //Query Term = query:
 export default function SearchBooks(props) {
@@ -9,13 +10,16 @@ export default function SearchBooks(props) {
     const [title, setTitle] = useState();
     const [disabled, setDisabled] = useState([]);
 
+    const history = useHistory();
+    
+
     //Books and Search Results:
     const [BookResults, setBookResults] = useState(null);
     const [loading, setLoading] = useState(true);
 
 
     const searchBooks = async (term) => {
-        try {   
+        try {
             const data = { title: term };
             const result = await Axios.post("http://localhost:5000/books/search", data);
             setBookResults(result.data);
@@ -32,12 +36,12 @@ export default function SearchBooks(props) {
                 userID: userData.user.id,
                 bookID: BookResults[num].id
             };
-            const result = await Axios.post("http://localhost:5000/books/addToLibrary", data, { headers: { "x-auth-token": userData.token } } );
+            const result = await Axios.post("http://localhost:5000/books/addToLibrary", data, { headers: { "x-auth-token": userData.token } });
             setDisabled([...disabled, num])
             //Successful; we want to disable the button!
             if (result.status == 200) {
             }
-            
+
 
         } catch (err) {
             console.log(err);
@@ -46,22 +50,34 @@ export default function SearchBooks(props) {
 
     //Want this to happen whenever the search changes! Therefore [props.query]
     useEffect(() => {
+
+        if (!userData.user) {
+            setUserData({
+                token: undefined,
+                user: undefined
+            });
+            localStorage.setItem("auth-token", "");
+            history.push("/landing");
+        }
+
+        setDisabled([]);
+        searchBooks(props.q);
         setLoading(true);
-        searchBooks(props.query);
-    }, [props.query]);
+    }, [props.q]);
 
     return (
-        <SearchBanner />
+        
         <div id="searchBooks">
+            <SearchBanner />
             {
-                loading ? <div className="loading"> <img src={require('../../assets/images/loading.gif')} /> <p>Loading Books ... </p> </div>:
+                loading ? <div className="loading"> <img src={require('../../assets/images/loading.gif')} /> <p>Loading Books ... </p> </div> :
                     <div className="shelf">
                         {BookResults.map((item, i) =>
                             <div className="BookEntry" key={item.id}>
 
                                 {
                                     (item.volumeInfo.imageLinks) ?
-                                        <img src={item.volumeInfo.imageLinks.thumbnail} /> : <img src={require('../../assets/images/EmptyCover.png')}/>
+                                        <img src={item.volumeInfo.imageLinks.thumbnail} /> : <img src={require('../../assets/images/EmptyCover.png')} />
                                 }
 
                                 <div className="bookDetails">
@@ -70,7 +86,7 @@ export default function SearchBooks(props) {
                                     {(item.volumeInfo.categories) ? <h4 className="Genre">{item.volumeInfo.categories[0]}</h4> : <h4 className="Genre">No Genres Found</h4>}
                                     <button disabled={disabled.indexOf(i) !== -1} onClick={() => addToLibrary(i)}>Add to Library</button>
                                 </div>
-                                
+
                             </div>
 
                         )}
