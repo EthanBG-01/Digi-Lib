@@ -4,6 +4,7 @@ import Axios from "axios";
 import UserContext from "../../context/userContext";
 import ErrorNotice from "../misc/Errors";
 import Landing from "../layout/Landing";
+import { Link } from 'react-router-dom';
 
 
 export default function Login() {
@@ -49,9 +50,8 @@ export default function Login() {
                     <input type="submit" value="Submit" />
 
                 </form>
-</div>
+                <Link to="/register" >Need an Account? Register Here.</Link>
+            </div>
         </div>
-
-
     )
 }

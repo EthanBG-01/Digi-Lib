@@ -8,15 +8,13 @@ export default function Books() {
     const { bookList, setBookList } = useContext(BookListContext);
 
     const [loading, setLoading] = useState(true);
-    const [books, setBooks] = useState(null);
+    const [userBooks, setUserBooks] = useState(null);
     const [sort, setSort] = useState("Recently Added");
 
     const fetchBooks = async () => {
         try {
             const books = await Axios.get("http://localhost:5000/books/userBooks", { headers: { "x-auth-token": userData.token } });
-            setBooks(books.data.books.reverse());
-
-
+            setUserBooks(books.data.books );
             setLoading(false);
         } catch (err) {
             console.log("ERROR");
@@ -25,8 +23,27 @@ export default function Books() {
         }
     }
 
+    //Attempting to sort the books by authors names alphabetically.
     const handleSelect = (e) => {
         setSort(e.target.value);
+        if (sort == "author") {
+            setUserBooks(userBooks.sort(function (a, b) {
+                var splitA = a.author.split(" ");
+                var splitB = b.author.split(" ");
+                var lastA = splitA[splitA.length - 1];
+                var lastB = splitB[splitB.length - 1];
+                console.log(lastA+ " "+ lastB);
+
+                if (lastA < lastB) return -1;
+                if (lastA > lastB) return 1;
+                return 0;
+            }));
+        } else {
+            setUserBooks(userBooks.sort(function (a, b) {
+                return a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
+            }));
+        }
+        
     }
 
     useEffect(() => {
@@ -58,15 +75,16 @@ export default function Books() {
             <hr />
 
             {loading ? <div className="loading"> <img src={require('../../assets/images/loading.gif')} /> <p>Loading Books ... </p> </div> :
-                books.length > 0 ? 
+                userBooks.length > 0 ? 
                     
                     <div id="bookList">
                         {
                             sort == "author" ?
-                                <p>Author</p>
+                                userBooks.map((item, i) =>
+                                    <img src={item.thumbnail} />
+                                )
                                 :
-                                
-                                    books.map((item, i) =>
+                                userBooks.map((item, i) =>
                                         <img src={item.thumbnail} />
                                     )
                                 

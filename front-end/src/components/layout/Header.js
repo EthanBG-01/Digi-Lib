@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import AuthOptions from "../auth/AuthLayer";
 import UserContext from "../../context/userContext";
-
+import "./Header.css";
 
 export default function Header(props) {
 

@@ -4,7 +4,7 @@ import Axios from "axios";
 import UserContext from "../../context/userContext";
 import ErrorNotice from "../misc/Errors";
 import Landing from "../layout/Landing";
-
+import { Link } from 'react-router-dom';
 
 export default function Register() {
     const [name, setName] = useState();
@@ -59,6 +59,7 @@ export default function Register() {
 
                     <input type="submit" value="Register Account >" />
                 </form>
+                <Link to="/login" >Already have an Account? Log in Here.</Link>
             </div>
             
         </div>

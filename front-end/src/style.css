@@ -9,73 +9,10 @@ body > #root > div {
     height: 100vh;
 }
 
-#header {
-    background-color: #222f45;
-    display: flex;
-    height: 50px;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 2%;
-    z-index: 3;
-    padding-right: 2%;
-}
-
 a{
     text-decoration:none;
 }
  
-#header .title{
-    margin:0;
-    padding:0 1rem;
-    color:white;
-    font-size:1.5rem;
-    font-weight:500;
-}
-
-#headerTitleImage {
-    display:flex;
-    align-items:center;
-}
-
-#headerTitleImage img {
-    height:40px;
-    width:auto;
-    padding-left:1rem;
-}
-#header{
-    height:50px;
-}
-
-#header .auth-level{
-    display:flex;
-    height:100%;
-}
-
-    #header .auth-level button {
-        color: white;
-        background-color: #222f45;
-        font-size:1rem;
-        border:none;
-        cursor:pointer;
-        padding:0 1rem;
-    }
-    #header .auth-level #welcome {
-        display:flex;
-        align-items:center;
-    }
-
-    #header .auth-level h1{
-        color:white;
-        font-weight:normal;
-        font-size:0.9rem;
-    }
-        #header .auth-level button:focus {
-            outline:none;
-        }
-
-        #header .auth-level button:hover {
-            background-color: #11768A;
-        }
 
 #container{
     display:flex;
@@ -126,6 +63,7 @@ a{
 .logRegPanel {
     flex: 1;
     background-color:#F3f3f3;
+    text-align:center;
 }
 
 .logRegPanel input{
@@ -133,16 +71,20 @@ a{
     border:1px solid #d8d8d8;
 }
 
+.logRegPage label{
+    text-align:left;
+}
+
 .logRegPanel input[type="submit"]{
     background-color:#11768A;
     color:white;
+    margin-bottom:2rem;
     margin-top:10vh;
     cursor:pointer;
 }
 
 .logRegPanel .form {
     padding:0rem 5rem;
-    
 }
 
 .logRegPanel .form #register-password{

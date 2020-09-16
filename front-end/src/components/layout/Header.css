@@ -1,0 +1,77 @@
+#header {
+    background-color: #222f45;
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 2%;
+    z-index: 3;
+    padding-right: 2%;
+}
+
+#header .title {
+    margin: 0;
+    padding: 0 1rem;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+#headerTitleImage {
+    display: flex;
+    align-items: center;
+}
+
+#headerTitleImage img {
+    height: 40px;
+    width: auto;
+    padding-left: 1rem;
+}
+
+#header {
+    height: 50px;
+}
+
+#header .auth-level {
+    display: flex;
+    height: 100%;
+}
+
+.auth-button {
+    color: white;
+    background-color: #222f45;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    padding: 0 1rem;
+}
+
+#header .auth-level #welcome {
+    display: flex;
+    align-items: center;
+}
+
+#header .auth-level h1 {
+    color: white;
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+.auth-button:hover {
+    background-color: #11768A;
+}
+
+#welcome {
+    height:100%;
+}
+
+#expand {
+    background-color: none;
+    border: none;
+    background-color: #222f45;
+}
+
+#expand img {
+    padding-left:1rem;
+    padding-top:0.4rem;
+}
