@@ -1,4 +1,4 @@
-# Digi-Lib
+# Digi-Lib (Prototype - In Progress)
 > A website built with the MERN stack which acts as a digital library; holding the user's books and insights.
 
 
